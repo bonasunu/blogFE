@@ -18,11 +18,11 @@ const App = () => {
   useEffect(() => {
     blogService.getAll().then(blogs =>
       setBlogs( blogs )
-    )  
+    )
   }, [])
 
-  useEffect(() =>{
-    const userLoggedJSON = window.localStorage.getItem('loggedBlogAppUser');
+  useEffect(() => {
+    const userLoggedJSON = window.localStorage.getItem('loggedBlogAppUser')
 
     if (userLoggedJSON) {
       const user = JSON.parse(userLoggedJSON)
@@ -31,7 +31,7 @@ const App = () => {
   }, [])
 
   const Notification = ({ message }) => {
-    if (message == null) {
+    if (message === null) {
       return null
     }
 
@@ -64,7 +64,7 @@ const App = () => {
       window.localStorage.setItem(
         'loggedBlogAppUser', JSON.stringify(user)
       )
-      
+
       blogService.setToken(user.token)
       setUser(user)
       setUsername('')
@@ -79,8 +79,8 @@ const App = () => {
 
   const handleLogout = async event => {
     event.preventDefault()
-    await setUser(null);
-    window.localStorage.clear();
+    await setUser(null)
+    window.localStorage.clear()
   }
 
   const loginForm = () => {
@@ -107,7 +107,7 @@ const App = () => {
   }
 
   const newBlogFormRef = useRef()
-  
+
   const handleCreateBlog = newBlog => {
     try {
       blogService
@@ -127,7 +127,7 @@ const App = () => {
     }
 
     newBlogFormRef.current.toggleVisibility()
-    
+
   }
 
   const newBlogForm = () => (
@@ -137,14 +137,14 @@ const App = () => {
       />
     </Toggleable>
   )
-  
+
   return (
     <div>
       <ErrorMessage message={errorMessage} />
       {user === null ?
         <>
-        <h2>Log in to application</h2>
-        {loginForm()}
+          <h2>Log in to application</h2>
+          {loginForm()}
         </> :
         <>
           <Notification message={message}/>
@@ -159,7 +159,7 @@ const App = () => {
           )}
         </>
       }
-      
+
     </div>
   )
 }
