@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-expressions */
 import React, { useState, useEffect } from 'react'
 import Blog from './components/Blog'
 import blogService from './services/blogs'
@@ -11,9 +10,9 @@ const App = () => {
   const [blogs, setBlogs] = useState([])
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [title, setTitle] = useState('')
-  const [author, setAuthor] = useState('')
-  const [url, setUrl] = useState('')
+  // const [title, setTitle] = useState('')
+  // const [author, setAuthor] = useState('')
+  // const [url, setUrl] = useState('')
   const [errorMessage, setErrorMessage] = useState(null)
   const [message, setMessage] = useState(null)
   const [user, setUser] = useState(null)
@@ -31,7 +30,6 @@ const App = () => {
     if (userLoggedJSON) {
       const user = JSON.parse(userLoggedJSON)
       setUser(user)
-      //loginService.setToken(user.token)
     }
   }, [])
 
@@ -111,23 +109,23 @@ const App = () => {
     )
   }
   
-  const handleCreateBlog = (event) => {
-    event.preventDefault()
+  const handleCreateBlog = newBlog => {
+    // event.preventDefault()
     try {
-      const newBlog = {
-        title: title,
-        author: author,
-        url: url
-      }
+      // const newBlog = {
+      //   title: title,
+      //   author: author,
+      //   url: url
+      // }
   
       console.log(user.token)
       blogService
         .createBlog(newBlog)
         .then(returnedBlog => {
           setBlogs(blogs.concat(returnedBlog))
-          setTitle('')
-          setAuthor('')
-          setUrl('')
+          // setTitle('')
+          // setAuthor('')
+          // setUrl('')
           setMessage(`a new blog ${returnedBlog.title} by ${returnedBlog.author} added`)
           setTimeout(() => {
             setMessage(null)
@@ -146,12 +144,6 @@ const App = () => {
     <Toggleable buttonLabel='new blog'>
       <BlogForm
         handleCreateBlog={handleCreateBlog}
-        title={title}
-        author={author}
-        url={url}
-        setTitle={setTitle}
-        setAuthor={setAuthor}
-        setUrl={setUrl}
       />
     </Toggleable>
   )
