@@ -10,9 +10,6 @@ const App = () => {
   const [blogs, setBlogs] = useState([])
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  // const [title, setTitle] = useState('')
-  // const [author, setAuthor] = useState('')
-  // const [url, setUrl] = useState('')
   const [errorMessage, setErrorMessage] = useState(null)
   const [message, setMessage] = useState(null)
   const [user, setUser] = useState(null)
@@ -110,22 +107,12 @@ const App = () => {
   }
   
   const handleCreateBlog = newBlog => {
-    // event.preventDefault()
     try {
-      // const newBlog = {
-      //   title: title,
-      //   author: author,
-      //   url: url
-      // }
-  
       console.log(user.token)
       blogService
         .createBlog(newBlog)
         .then(returnedBlog => {
           setBlogs(blogs.concat(returnedBlog))
-          // setTitle('')
-          // setAuthor('')
-          // setUrl('')
           setMessage(`a new blog ${returnedBlog.title} by ${returnedBlog.author} added`)
           setTimeout(() => {
             setMessage(null)
