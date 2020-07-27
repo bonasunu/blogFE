@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Blog from './components/Blog'
 import blogService from './services/blogs'
 import loginService from './services/login'
@@ -105,10 +105,11 @@ const App = () => {
       </div>
     )
   }
+
+  const newBlogFormRef = useRef()
   
   const handleCreateBlog = newBlog => {
     try {
-      console.log(user.token)
       blogService
         .createBlog(newBlog)
         .then(returnedBlog => {
@@ -124,11 +125,13 @@ const App = () => {
         setErrorMessage(null)
       }, 5000)
     }
+
+    newBlogFormRef.current.toggleVisibility()
     
   }
 
   const newBlogForm = () => (
-    <Toggleable buttonLabel='new blog'>
+    <Toggleable buttonLabel='new blog' ref={newBlogFormRef}>
       <BlogForm
         handleCreateBlog={handleCreateBlog}
       />
