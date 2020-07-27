@@ -11,11 +11,9 @@ const App = () => {
   const [blogs, setBlogs] = useState([])
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  // set new blog
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
   const [url, setUrl] = useState('')
-  // eslint-disable-next-line no-unused-vars
   const [errorMessage, setErrorMessage] = useState(null)
   const [message, setMessage] = useState(null)
   const [user, setUser] = useState(null)
