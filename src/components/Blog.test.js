@@ -13,8 +13,6 @@ test('renders content', () => {
     <Blog blog={blog} />
   )
 
-  component.debug()
-
   expect(component.container).toHaveTextContent(
     'Blog test title Blog test author'
   )
