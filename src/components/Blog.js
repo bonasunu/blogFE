@@ -13,20 +13,23 @@ const Blog = ({ blog }) => {
     marginBottom: 5
   }
 
+  // TODO Styling view and hide blog, delete blog post without likes on MongoDB
+
   return (
     <div style={blogStyle}>
-      {blog.title} {blog.author}
-      <div style={hideWhenVisible}>
-        <button onClick={() => setDetailVisible(true)}>
+      <div>
+        {blog.title} {blog.author}
+        <button onClick={() => setDetailVisible(true)} style={hideWhenVisible}>
           View
         </button>
+        <button onClick={() => setDetailVisible(false)} style={showWhenVisible}>
+          Hide
+        </button>
+        <button onClick={() => console.log(blog)}>Check</button>
       </div>
       <div style={showWhenVisible}>
         {blog.url}
         {blog.likes}
-        <button onClick={() => setDetailVisible(false)}>
-          Hide
-        </button>
       </div>
     </div>
   )
