@@ -138,6 +138,16 @@ const App = () => {
     </Toggleable>
   )
 
+  const viewBlog = () => {
+
+    return (
+      blogs.map(blog =>
+        <Blog key={blog.id} blog={blog}>
+        </Blog>
+      )
+    )
+  }
+
   return (
     <div>
       <ErrorMessage message={errorMessage} />
@@ -154,9 +164,7 @@ const App = () => {
           <h2>create new</h2>
           {newBlogForm()}
           <br></br>
-          {blogs.map(blog =>
-            <Blog key={blog.id} blog={blog} />
-          )}
+          {viewBlog()}
         </>
       }
 
