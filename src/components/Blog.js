@@ -28,7 +28,7 @@ const Blog = ({ blog }) => {
       <div style={showWhenVisible}>
         <p>{blog.url}</p>
         <p>{blog.likes}
-          <button className='buttonTitle'>
+          <button className='buttonTitle' onClick={() => console.log(blog)}>
             Like
           </button>
         </p>
