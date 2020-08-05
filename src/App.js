@@ -130,6 +130,18 @@ const App = () => {
 
   }
 
+  const handleLike = (newBlog, blogId) => {
+    try {
+      blogService
+        .updateBlog(newBlog, blogId)
+    } catch (exception) {
+      setErrorMessage('Blog creation failed')
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 5000)
+    }
+  }
+
   const newBlogForm = () => (
     <Toggleable buttonLabel='new blog' ref={newBlogFormRef}>
       <BlogForm
@@ -142,7 +154,7 @@ const App = () => {
 
     return (
       blogs.map(blog =>
-        <Blog key={blog.id} blog={blog}>
+        <Blog key={blog.id} blog={blog} handleLike={handleLike}>
         </Blog>
       )
     )
