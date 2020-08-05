@@ -18,18 +18,23 @@ const Blog = ({ blog }) => {
   return (
     <div style={blogStyle}>
       <div>
-        <p>{blog.title} {blog.author}</p>
-        <button onClick={() => setDetailVisible(true)} style={hideWhenVisible}>
-          View
-        </button>
-        <button onClick={() => setDetailVisible(false)} style={showWhenVisible}>
-          Hide
-        </button>
-        <button onClick={() => console.log(blog)}>Check</button>
+        <p>{blog.title} {blog.author}
+          <button onClick={() => setDetailVisible(true)} style={hideWhenVisible} className='buttonTitle'>
+            View
+          </button>
+          <button onClick={() => setDetailVisible(false)} style={showWhenVisible} className='buttonTitle'>
+            Hide
+          </button>
+        </p>
       </div>
       <div style={showWhenVisible}>
-        {blog.url}
-        {blog.likes}
+        <p>{blog.url}</p>
+        <p>{blog.likes}
+          <button>
+            Like
+          </button>
+        </p>
+        <p>{blog.author}</p>
       </div>
     </div>
   )
