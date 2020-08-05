@@ -13,8 +13,6 @@ const Blog = ({ blog }) => {
     marginBottom: 5
   }
 
-  // TODO Styling view and hide blog, delete blog post without likes on MongoDB
-
   return (
     <div style={blogStyle}>
       <div>
@@ -30,7 +28,7 @@ const Blog = ({ blog }) => {
       <div style={showWhenVisible}>
         <p>{blog.url}</p>
         <p>{blog.likes}
-          <button>
+          <button className='buttonTitle'>
             Like
           </button>
         </p>
