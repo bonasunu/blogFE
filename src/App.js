@@ -131,6 +131,7 @@ const App = () => {
   }
 
   const handleLike = (newBlog, blogId) => {
+    console.log('handleLike on!')
     try {
       blogService
         .updateBlog(newBlog, blogId)
