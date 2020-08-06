@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
-const Blog = ({ blog, handleLike }) => {
+// eslint-disable-next-line no-unused-vars
+const Blog = ({ blog, handleLike, user }) => {
   const [detailVisible, setDetailVisible] = useState(false)
   const hideWhenVisible = { display: detailVisible ? 'none' : '' }
   const showWhenVisible = { display: detailVisible ? '' : 'none' }
@@ -25,6 +26,21 @@ const Blog = ({ blog, handleLike }) => {
     handleLike(newBlog, blog.id)
   }
 
+  const removeBlog = () => {
+    console.log('Remove!')
+  }
+
+  const RemoveButton = () => {
+    if (user.username === blog.user.username) {
+      return (
+        <button onClick={removeBlog}>
+          remove
+        </button>
+      )
+    }
+    else return null
+  }
+
   return (
     <div style={blogStyle}>
       <div>
@@ -45,6 +61,9 @@ const Blog = ({ blog, handleLike }) => {
           </button>
         </p>
         <p>{blog.author}</p>
+        <div>
+          <RemoveButton />
+        </div>
       </div>
     </div>
   )
