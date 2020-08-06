@@ -27,10 +27,12 @@ const Blog = ({ blog, handleLike, user }) => {
   }
 
   const removeBlog = () => {
-    console.log('Remove!')
+    const result = window.confirm(`Remove blog ${blog.title}`)
+
+    console.log('Remove', result)
   }
 
-  const RemoveButton = () => {
+  const RemoveButton = ({ blog }) => {
     if (user.username === blog.user.username) {
       return (
         <button onClick={removeBlog}>
@@ -62,7 +64,7 @@ const Blog = ({ blog, handleLike, user }) => {
         </p>
         <p>{blog.author}</p>
         <div>
-          <RemoveButton />
+          <RemoveButton blog={blog}/>
         </div>
       </div>
     </div>
