@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 // eslint-disable-next-line no-unused-vars
-const Blog = ({ blog, handleLike, user }) => {
+const Blog = ({ blog, handleLike, user, handleDeleteBlog }) => {
   const [detailVisible, setDetailVisible] = useState(false)
   const hideWhenVisible = { display: detailVisible ? 'none' : '' }
   const showWhenVisible = { display: detailVisible ? '' : 'none' }
@@ -29,6 +29,9 @@ const Blog = ({ blog, handleLike, user }) => {
   const removeBlog = () => {
     const result = window.confirm(`Remove blog ${blog.title}`)
 
+    if (result === true) {
+      handleDeleteBlog(blog.id)
+    }
     console.log('Remove', result)
   }
 

@@ -143,6 +143,19 @@ const App = () => {
     }
   }
 
+  const handleDeleteBlog = blogId => {
+    try {
+      blogService
+        .deleteBlog(blogId)
+        .setBlogs(blogs.filter(blog => blog.id !== blogId))
+    } catch (exception) {
+      setErrorMessage('Blog deletion failed')
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 5000)
+    }
+  }
+
   const newBlogForm = () => (
     <Toggleable buttonLabel='new blog' ref={newBlogFormRef}>
       <BlogForm
@@ -157,7 +170,7 @@ const App = () => {
       blogs
         .sort((a, b) => b.likes - a.likes)
         .map(blog =>
-          <Blog key={blog.id} blog={blog} handleLike={handleLike} user={user}>
+          <Blog key={blog.id} blog={blog} handleLike={handleLike} user={user} handleDeleteBlog={handleDeleteBlog}>
           </Blog>)
     )
   }
