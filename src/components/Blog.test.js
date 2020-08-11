@@ -1,7 +1,8 @@
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
-import { render, prettyDOM } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import Blog from './Blog'
+import Toggleable from './Toggleable'
 
 test('renders content', () => {
   const blog = {
@@ -35,5 +36,55 @@ test('renders content', () => {
     'Blog test title Blog test author'
   )
 
-  console.log(prettyDOM(div))
+  // console.log(prettyDOM(div))
+})
+
+// test('clicking button calls event button handlers once', () => {
+//   const blog = {
+//     title: 'Blog test button',
+//     author: 'Blog test author',
+//     user: { username: 'johndoe' }
+//   }
+
+//   const user = { username: 'johndoe' }
+
+//   const mockHandler = jest.fn()
+
+//   const component = render(
+//     <Blog blog={blog} user={user}/>
+//   )
+
+//   const button = component.getByText('remove')
+//   fireEvent.click(button)
+
+//   expect(mockHandler.mock.calls).toHaveLength(1)
+// })
+
+
+describe('<Toggleable />', () => {
+  // eslint-disable-next-line no-unused-vars
+  let component
+
+  beforeEach(() => {
+    component = render(
+      <Toggleable buttonLabel='test div'>
+        <div className='testDiv'></div>
+      </Toggleable>
+    )
+  })
+
+  test('renders its children', () => {
+    expect(
+      component.container.querySelector('.testDiv')
+    ).toBeDefined()
+
+    component.debug()
+  })
+
+  // test('at start the children is not displayed', () => {
+  //   const div = component.container.querySelector('.toggleableContent')
+
+  //   expect(div).toHaveStyle('display: none')
+  // })
+
 })
