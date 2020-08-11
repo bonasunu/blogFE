@@ -1,6 +1,6 @@
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
-import { render } from '@testing-library/react'
+import { render, prettyDOM } from '@testing-library/react'
 import Blog from './Blog'
 
 test('renders content', () => {
@@ -15,6 +15,8 @@ test('renders content', () => {
   const component = render(
     <Blog blog={blog} user={user}/>
   )
+
+  // component.debug()
 
   // method 1
   expect(component.container).toHaveTextContent(
@@ -32,4 +34,6 @@ test('renders content', () => {
   expect(div).toHaveTextContent(
     'Blog test title Blog test author'
   )
+
+  console.log(prettyDOM(div))
 })
