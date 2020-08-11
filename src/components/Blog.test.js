@@ -16,7 +16,20 @@ test('renders content', () => {
     <Blog blog={blog} user={user}/>
   )
 
+  // method 1
   expect(component.container).toHaveTextContent(
+    'Blog test title Blog test author'
+  )
+
+  // method 2
+  const element = component.getByText(
+    'Blog test title Blog test author'
+  )
+  expect(element).toBeDefined()
+
+  // method 3
+  const div = component.container.querySelector('.blogStyle')
+  expect(div).toHaveTextContent(
     'Blog test title Blog test author'
   )
 })
