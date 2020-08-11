@@ -24,7 +24,7 @@ const BlogForm = ({
   }
 
   return (
-    <form onSubmit={addNewBlog}>
+    <form onSubmit={addNewBlog} className='formDiv'>
       <div>
           title:
         <input

@@ -1,8 +1,9 @@
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
-import { render } from '@testing-library/react'
+import { render, fireEvent } from '@testing-library/react'
 import Blog from './Blog'
 import Toggleable from './Toggleable'
+import BlogForm from './BlogForm'
 
 test('renders content', () => {
   const blog = {
@@ -87,4 +88,24 @@ describe('<Toggleable />', () => {
   //   expect(div).toHaveStyle('display: none')
   // })
 
+})
+
+test('<BlogForm /> update parent state and calls on submit', () => {
+  const createBlog = jest.fn()
+
+  const component = render(
+    <BlogForm handleCreateBlog={createBlog}/>
+  )
+
+  const input = component.container.querySelector('input')
+  const form = component.container.querySelector('form')
+
+  fireEvent.change(input, {
+    target: { value: 'testing form could be easier' }
+  })
+  fireEvent.submit(form)
+
+  expect(createBlog.mock.calls).toHaveLength(1)
+  // console.log(createBlog.mock.calls[0][0].title)
+  expect(createBlog.mock.calls[0][0].title).toBe('testing form could be easier')
 })
